@@ -5,22 +5,20 @@ from mojo.UI import CurrentSpaceCenter
 class CaseChanger(object):
 	def __init__(self):
 		addObserver(self, "addButton", "spaceCenterDidOpen")
-	def spaceCenterWillClose(self, window, font):
-		removeObserver(self, "addButton")
-	
+
 	def addButton(self, sender):
 		buttonWidth = 30
+		csp = CurrentSpaceCenter()
 
-		sp = CurrentSpaceCenter()
-		l,t,w,h = sp.top.glyphLineInput.getPosSize()
-		sp.top.glyphLineInput.setPosSize((l,t,w-buttonWidth*2-10,h))
+		l,t,w,h = csp.top.glyphLineInput.getPosSize()
+		csp.top.glyphLineInput.setPosSize((l,t,w-buttonWidth*2-10,h))
 
-		l,t,w,h = sp.top.glyphLineAfterInput.getPosSize()
-		sp.top.glyphLineAfterInput.setPosSize((l-buttonWidth*2-10,t,w,h))
+		l,t,w,h = csp.top.glyphLineAfterInput.getPosSize()
+		csp.top.glyphLineAfterInput.setPosSize((l-buttonWidth*2-10,t,w,h))
 
- 
-		sp.Lower = Button((l+w-buttonWidth, t-2, buttonWidth, 22), "⬇︎", callback=self.buttonCallback)
-		sp.Upper = Button((l+w-buttonWidth*2, t-2, buttonWidth, 22), "⬆︎", callback=self.buttonCallback)
+		csp.Lower = Button((l+w-buttonWidth, t-2, buttonWidth, 22), "⬇︎", callback=self.buttonCallback)
+		csp.Upper = Button((l+w-buttonWidth*2, t-2, buttonWidth, 22), "⬆︎", callback=self.buttonCallback)
+
 						
 	def buttonCallback(self, sender):
 		csp = CurrentSpaceCenter()
