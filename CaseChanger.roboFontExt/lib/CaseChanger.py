@@ -4,9 +4,9 @@ from mojo.UI import CurrentSpaceCenter
 
 class CaseChanger(object):
 	def __init__(self):
-		addObserver(self, "addButton", "spaceCenterDidOpen")
-
-	def addButton(self, sender):
+		addObserver(self, "buttonSetup", "spaceCenterDidOpen")
+	
+	def buttonSetup(self, notification):
 		buttonWidth = 30
 		csp = CurrentSpaceCenter()
 
@@ -18,8 +18,7 @@ class CaseChanger(object):
 
 		csp.Lower = Button((l+w-buttonWidth, t-2, buttonWidth, 22), "⬇︎", callback=self.buttonCallback)
 		csp.Upper = Button((l+w-buttonWidth*2, t-2, buttonWidth, 22), "⬆︎", callback=self.buttonCallback)
-
-						
+				
 	def buttonCallback(self, sender):
 		csp = CurrentSpaceCenter()
 		sc_txt_all = [csp.getRaw(), ''.join(csp.getPre()), ''.join(csp.getAfter())]
